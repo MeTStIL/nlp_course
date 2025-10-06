@@ -7,7 +7,7 @@
 ### Practice
 This time we're gonna use a shared `new_practice_and_homework.ipynb` for both seminar and homework.
 
-Seminar [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yandexdataschool/nlp_course/blob/2023/week04_seq2seq/practice_and_homework_pytorch.ipynb).
+Seminar [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yandexdataschool/nlp_course/blob/2025/week03_attention/new_practice_and_homework.ipynb).
 
 ### Lecture-blog, research thinking exercises, related papers and fun: 
 #### ![logo](../resources/course_logo.png) [NLP Course For You](https://lena-voita.github.io/nlp_course.html#preview_seq2seq_attn) 

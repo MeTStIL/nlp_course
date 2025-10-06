@@ -1,12 +1,12 @@
 
 
 ### Materials
-- [__lecture slides__](https://drive.google.com/file/d/1wQ8VRiKLxfqAndLh3Djr1jIMixacznQF/view?usp=sharing)
+- [__lecture slides__](https://docs.google.com/presentation/d/16CTpXAYwIiVuv8nbe729C4_olGYwilhH/edit?usp=sharing&ouid=106859861310420466947&rtpof=true&sd=true)
 * Our videos (russian) - [lecture](https://disk.yandex.ru/i/NKyh_2Lw8U5h0g), [seminar](https://disk.yandex.ru/d/5-ngGyipKHwmaQ)
 * Stanford nlp videos: [N-gram language models](https://archive.org/details/41IntroductionToNGramsStanfordNLPProfessorDanJurafskyChrisManning/), [neural language models](https://www.youtube.com/watch?v=Keqep_PKrY8)
 
 ### Practice
-Seminar: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yandexdataschool/nlp_course/blob/2023/week03_lm/seminar.ipynb)
+Seminar: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yandexdataschool/nlp_course/blob/2025/week02_lm/seminar.ipynb)
 
 As usual, `./seminar.ipynb` and `./homework_*.ipynb` await you :)
 
