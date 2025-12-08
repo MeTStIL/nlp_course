@@ -14,7 +14,7 @@ def parse_tasks() -> list[dict[str, str]]:
 
     session = requests.Session()
     if lk_cookie:
-        session.cookies.set("sessionid", lk_cookie, domain="lk.dataschool.yandex.ru")
+        session.cookies.set('Session_id', lk_cookie, domain='.yandex.ru')
 
     resp = session.get(url, headers=headers, timeout=10)
     resp.raise_for_status()
@@ -28,7 +28,7 @@ def parse_tasks() -> list[dict[str, str]]:
 
     tasks = []
 
-    for row in open_tasks_table.find_all("tr", class_="noop"):
+    for row in open_tasks_table.find_all("tr"):
         date_block = row.find("div", class_="assignment-date")
         if date_block:
             date = date_block.find("span", class_="nowrap").get_text(strip=True)
@@ -57,4 +57,66 @@ def parse_tasks() -> list[dict[str, str]]:
 
 # TODO: Implement function to get a list of upcoming lectures from learning/timetable/
 def parse_lectures() -> list[dict[str, str]]:
-    raise NotImplementedError("Function parse_lectures is not yet implemented")
+    load_dotenv()
+    lk_cookie = os.getenv("LK_SESSION_COOKIE")
+
+    url = "https://lk.dataschool.yandex.ru/learning/timetable/?year=2025&week=49"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (compatible; parser/1.0)"
+    }
+
+    session = requests.Session()
+    if lk_cookie:
+        session.cookies.set('Session_id', lk_cookie, domain='.yandex.ru')
+
+    resp = session.get(url, headers=headers, timeout=10)
+    resp.raise_for_status()
+    html = resp.text
+
+    soup = BeautifulSoup(html, "html.parser")
+
+
+
+    timetable_tables = soup.find_all("table", class_="timetable")
+    if not timetable_tables:
+        raise RuntimeError("Could not find timetable. Check your cookie.")
+
+    lectures = []
+
+    for table in timetable_tables:
+        rows = table.find_all("tr")
+
+        for row in rows:
+            cols = row.find_all("td")
+            if len(cols) != 5:  
+                continue
+
+            time = cols[0].get_text(strip=True)
+
+            name_link = cols[1].find("a")
+            course_link = cols[2].find("a")
+            badge = cols[4].find("span")
+
+            if not (name_link and course_link and badge):
+                continue
+
+            lecture_type = badge.get_text(strip=True)
+
+           
+            '''if "лекц" not in lecture_type.lower():
+                continue'''
+
+            location = cols[3].get_text(strip=True)
+
+            lectures.append({
+                "course": course_link.get_text(strip=True),
+                "lecture": name_link.get_text(strip=True),
+                "time": time,
+                "location": location,
+                "type": lecture_type
+            })
+
+    for l in lectures:
+        print(f"{l['course']}: {l['lecture']} — {l['time']} ({l['location']})")
+
+    return lectures
